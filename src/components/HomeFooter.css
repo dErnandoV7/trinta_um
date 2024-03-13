@@ -1,0 +1,44 @@
+
+.home-footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px;
+    height: 20vh;
+  }
+  
+  .author {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .author img {
+    height: 60px;
+    border-radius: 50%;
+  }
+  
+  .author h2 {
+    font-size: 16px;
+    font-weight: normal;
+    color: #3c3c3c;
+  }
+  
+  .contact-footer ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+  }
+  
+  .contact-footer ul a {
+    font-size: 22px;
+    color: #6262f0;
+    transition: 0.5s;
+  }
+  
+  .contact-footer ul a:hover {
+    transform: scale(1.08);
+  }
+  

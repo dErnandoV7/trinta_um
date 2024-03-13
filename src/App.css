@@ -1,5 +1,5 @@
 body {
   min-height: 100vh;
-  background: #000 url("./assets/fundo.jpg") no-repeat center center;
-  background-size: cover;
+  /* background: #fff url("./assets/fundo.jpeg") no-repeat center center;
+  background-size: 60%; */
 }

@@ -10,7 +10,7 @@ const HomeFooter = () => {
       <div className="author">
         <img src={Photo} alt="Foto do Desenvolvedor" />
         <h2>
-          Desenvolvido por <strong>Ernando Alves</strong>
+          Desenvolvido por <br /><strong>Ernando Alves</strong>
         </h2>
       </div>
       <div className="contact-footer">

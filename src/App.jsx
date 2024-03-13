@@ -1,6 +1,7 @@
 import { useContextTrintaeUm } from "./hooks/useContextTrintaeUm";
 
 import Home from "./components/Home";
+import ConfigGame from "./components/ConfigGame";
 
 import "./App.css";
 
@@ -11,7 +12,8 @@ function App() {
   return (
     <>
       {state.STAGES[current] == "Home" && <Home />}
-      {state.STAGES[current] == "Config_game" && <p>tela de configuração de game</p>}
+      {state.STAGES[current] == "Config_game" && <ConfigGame />}
+      {state.STAGES[current] == "Playing" && <p>Jogando</p>}
     </>
   );
 }

@@ -1,0 +1,96 @@
+#config-game {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  min-height: 90vh;
+  padding: 150px 20px 20px;
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.number-of-players {
+  margin-bottom: 40px;
+}
+
+.number-of-players h2 {
+  font-size: 28px;
+  color: #3c3c3c;
+  margin-bottom: 20px;
+}
+
+.number-of-players .options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.number-of-players .options button {
+  border: 1px solid #6262f0;
+  color: #6262f0;
+  padding: 20px 28px;
+  border-radius: 20px;
+  font-size: 26px;
+  cursor: pointer;
+  background: #fff;
+  transition: 0.3s;
+}
+
+.number-of-players .options button:hover {
+  background: #f0f0f0;
+}
+
+.active {
+  border: none;
+  background: #6262f0 !important;
+  color: #fff !important;
+}
+
+.disabled {
+    opacity: .3;
+}
+
+.play-with-bot {
+  margin-bottom: 40px;
+}
+
+.play-with-bot span {
+    text-transform: capitalize;
+}
+
+.play-with-bot button {
+  border: 1px solid #6262f0;
+  background: transparent;
+  width: 100%;
+  max-width: 300px;
+  padding: 16px 24px;
+  border-radius: 20px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 20px;
+  color: #3c3c3c;
+  transition: 0.3s;
+}
+
+.play-with-bot button:hover {
+  background: #f0f0f0;
+}
+
+.img-config-game {
+  background: #fff url(../assets/img-config.png) no-repeat center center;
+  background-size: 80%;
+  width: 50%;
+  height: 50vh;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+  #config-game {
+    justify-content: center;
+  }
+
+  .img-config-game {
+    display: none;
+  }
+}

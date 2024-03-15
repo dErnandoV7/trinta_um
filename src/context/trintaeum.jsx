@@ -1,5 +1,28 @@
 import { createContext, useReducer } from "react";
 
+const returnNumberCardRandom = () => {
+  const indexRandom = () => {
+    return Math.round(Math.random() * 12);
+  };
+
+  const cards = [
+    ["A", 1],
+    ["2", 2],
+    ["3", 3],
+    ["4", 4],
+    ["5", 5],
+    ["6", 6],
+    ["7", 7],
+    ["8", 8],
+    ["9", 9],
+    ["10", 10],
+    ["J", 10],
+    ["K", 10],
+    ["Q", 10],
+  ];
+  return [cards[indexRandom()], cards[indexRandom()], cards[indexRandom()]];
+};
+
 export const TrintaeUmContext = createContext();
 
 const initialState = {
@@ -7,8 +30,8 @@ const initialState = {
   current: 0,
   quant_players: 2,
   players: [
-    { name: "Ernando", cards: ["A", "2", "3"] },
-    { name: "Eric", cards: ["A", "2", "3"] },
+    { name: "Ernando", cards: returnNumberCardRandom() },
+    { name: "Eric", cards: returnNumberCardRandom() },
   ],
   names: ["Ernando", "Eric", "Geremias", "João Pedro", "Lucas Lima"],
   play_with_bot: false,
@@ -27,7 +50,7 @@ const trintaeUmReducer = (state, action) => {
       const newPlayers = [];
 
       Array.from({ length: numberOfPlayers }, (x, index) => {
-        newPlayers.push({ name: state.names[index], cards: ["A", "2", "3"] });
+        newPlayers.push({ name: state.names[index], cards: returnNumberCardRandom() });
       });
 
       return {

@@ -1,0 +1,139 @@
+#playing {
+  padding: 50px 10px 40px;
+}
+
+.container-playing {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  max-width: 800px;
+  margin: auto;
+  height: 100%;
+}
+
+.banner-playing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75%;
+  margin-bottom: 30px;
+}
+
+.banner-playing img {
+  width: 90%;
+  max-width: 250px;
+  filter: drop-shadow(1px 1px 5px #00000046);
+  border-radius: 10px;
+}
+
+.section-player {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 25%;
+  /* padding: 10px; */
+  border-radius: 20px;
+}
+
+.section-player h2 {
+  color: #000;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.section-player h2 strong {
+  color: #3c3c3c;
+  font-weight: bold;
+}
+
+.section-player h3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #5a5aff;
+  padding: 3px 6px;
+  border: 1px solid #5a5affa5;
+  border-radius: 14px;
+  width: max-content;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.cards-playing {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.cards-playing .card {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: #ff0000c8;
+  border-radius: 8px;
+  font-size: 30px;
+  height: 200px;
+  width: 160px;
+  box-shadow: 2px 1px 14px 5px #61616112;
+  border: 1px solid #3c3c3c56;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cards-playing .card:hover {
+  background: #f0f0f0;
+}
+
+.cards-playing .card span {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  font-size: 14px;
+  color: #3c3c3c;
+}
+
+.button-next-player {
+  background: #1b1bcda5;
+  width: max-content;
+  color: #fff;
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+.button-next-player:hover {
+  background: #1b1bcdf7;
+}
+
+.footer-playing {
+  position: fixed;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  padding: 4px 10px 15px;
+}
+
+@media (max-width: 450px) {
+  .cards-playing .card {
+    height: 150px;
+    width: 120px;
+  }
+}
+
+@media (max-width: 350px) {
+  .cards-playing .card {
+    height: 120px;
+    width: 80px;
+  }
+}

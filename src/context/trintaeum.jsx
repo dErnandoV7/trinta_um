@@ -28,10 +28,11 @@ export const TrintaeUmContext = createContext();
 const initialState = {
   STAGES: ["Home", "Config_game", "Playing", "End_game"],
   current: 0,
+  current_player: 0,
   quant_players: 2,
   players: [
-    { name: "Ernando", cards: returnNumberCardRandom() },
-    { name: "Eric", cards: returnNumberCardRandom() },
+    ["Ernando", returnNumberCardRandom()],
+    ["Eric", returnNumberCardRandom()],
   ],
   names: ["Ernando", "Eric", "Geremias", "João Pedro", "Lucas Lima"],
   play_with_bot: false,
@@ -50,7 +51,7 @@ const trintaeUmReducer = (state, action) => {
       const newPlayers = [];
 
       Array.from({ length: numberOfPlayers }, (x, index) => {
-        newPlayers.push({ name: state.names[index], cards: returnNumberCardRandom() });
+        newPlayers.push([state.names[index], returnNumberCardRandom()]);
       });
 
       return {
@@ -64,7 +65,7 @@ const trintaeUmReducer = (state, action) => {
       const newPlayersPb = [];
 
       Array.from({ length: 2 }, (x, index) => {
-        newPlayersPb.push({ name: state.names[index], cards: ["A", "2", "3"] });
+        newPlayersPb.push([state.names[index], returnNumberCardRandom()]);
       });
       return {
         ...state,
@@ -76,6 +77,13 @@ const trintaeUmReducer = (state, action) => {
       return {
         ...state,
         current: 2,
+      };
+    case "NEXT_PLAYER":
+      const isLastIndex = state.current_player === state.players.length - 1;
+
+      return {
+        ...state,
+        current_player: isLastIndex ? 0 : state.current_player + 1,
       };
     default:
       return state;

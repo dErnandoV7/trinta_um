@@ -1,6 +1,7 @@
+import { useEffect } from "react";
 import { createContext, useReducer } from "react";
 
-const returnNumberCardRandom = () => {
+const returnNumberCardRandom = (one = false) => {
   const indexRandom = () => {
     return Math.round(Math.random() * 12);
   };
@@ -20,13 +21,16 @@ const returnNumberCardRandom = () => {
     ["K", 10],
     ["Q", 10],
   ];
+
+  if (one) return cards[indexRandom()];
+
   return [cards[indexRandom()], cards[indexRandom()], cards[indexRandom()]];
 };
 
 export const TrintaeUmContext = createContext();
 
 const initialState = {
-  STAGES: ["Home", "Config_game", "Playing", "End_game"],
+  STAGES: ["Home", "Config_game", "Loading", "Playing", "End_game"],
   current: 0,
   current_player: 0,
   quant_players: 2,
@@ -44,6 +48,18 @@ const trintaeUmReducer = (state, action) => {
       return {
         ...state,
         current: 1,
+      };
+
+    case "LOADING":
+      return {
+        ...state,
+        current: 2,
+      };
+
+    case "PLAY":
+      return {
+        ...state,
+        current: 3,
       };
 
     case "SET_QUANT_PLAYERS":
@@ -73,11 +89,7 @@ const trintaeUmReducer = (state, action) => {
         players: newValuePwb ? [] : newPlayersPb,
         play_with_bot: newValuePwb,
       };
-    case "PLAY":
-      return {
-        ...state,
-        current: 2,
-      };
+
     case "NEXT_PLAYER":
       const isLastIndex = state.current_player === state.players.length - 1;
 
@@ -85,6 +97,20 @@ const trintaeUmReducer = (state, action) => {
         ...state,
         current_player: isLastIndex ? 0 : state.current_player + 1,
       };
+
+    case "GET_OTHER_CARD":
+      const cards = state.players[state.current_player][1];
+      const newCards = returnNumberCardRandom(true);
+      cards.push(newCards);
+      
+      const newCardsPlayer = state.players;
+      newCardsPlayer[state.current_player][1] = cards;
+
+      return {
+        ...state,
+        players: newCardsPlayer,
+      };
+
     default:
       return state;
   }

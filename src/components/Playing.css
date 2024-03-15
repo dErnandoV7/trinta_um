@@ -11,27 +11,11 @@
   height: 100%;
 }
 
-.banner-playing {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 75%;
-  margin-bottom: 30px;
-}
-
-.banner-playing img {
-  width: 90%;
-  max-width: 250px;
-  filter: drop-shadow(1px 1px 5px #00000046);
-  border-radius: 10px;
-}
-
 .section-player {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 25%;
-  /* padding: 10px; */
   border-radius: 20px;
 }
 
@@ -97,6 +81,18 @@
   color: #3c3c3c;
 }
 
+.footer-playing {
+  position: fixed;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  bottom: 10px;
+  width: 95%;
+  max-width: 800px;
+  margin: auto;
+  padding: 4px 10px 15px;
+}
+
 .button-next-player {
   background: #1b1bcda5;
   width: max-content;
@@ -113,16 +109,6 @@
   background: #1b1bcdf7;
 }
 
-.footer-playing {
-  position: fixed;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  padding: 4px 10px 15px;
-}
 
 @media (max-width: 450px) {
   .cards-playing .card {

@@ -1,4 +1,5 @@
 import { useContextTrintaeUm } from "../hooks/useContextTrintaeUm";
+import { useEffect } from "react";
 
 import "./Playing.css";
 
@@ -6,6 +7,10 @@ const Playing = () => {
   const [state, dispatch] = useContextTrintaeUm();
   const currentPlayer = state.current_player;
   const [name, cards] = state.players[currentPlayer];
+
+  const getOtherCard = () => {
+    dispatch({type: "GET_OTHER_CARD"})
+  }
 
   return (
     <div id="playing">
@@ -15,7 +20,7 @@ const Playing = () => {
             Nome do Jogador: <strong>{name}</strong>
           </h2>
           <h3>
-            <span>Pedir carta</span>
+            <span onClick={getOtherCard}>Pedir carta</span>
           </h3>
           <div className="cards-playing">
             {cards.map((card, index) => (

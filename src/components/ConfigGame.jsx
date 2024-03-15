@@ -9,7 +9,7 @@ const ConfigGame = () => {
   const playWithBot = state.play_with_bot;
 
   document.addEventListener("keyup", (e) => {
-    if (e.key == "Enter") dispatch({ type: "PLAY" });
+    if (e.key == "Enter") dispatch({ type: "LOADING" });
   });
 
   return (
@@ -34,7 +34,7 @@ const ConfigGame = () => {
         </div>
         <button
           className="button-next"
-          onClick={() => dispatch({ type: "PLAY" })}
+          onClick={() => dispatch({ type: "LOADING" })}
         >
           Iniciar
         </button>

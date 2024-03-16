@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { createContext, useReducer } from "react";
 
 const returnNumberCardRandom = (one = false) => {
@@ -29,45 +28,55 @@ const returnNumberCardRandom = (one = false) => {
 
 export const TrintaeUmContext = createContext();
 
+const stages = ["Home", "Config_game", "Loading", "Playing", "End_game"];
+
 const initialState = {
-  STAGES: ["Home", "Config_game", "Loading", "Playing", "End_game"],
-  current: 0,
+  STAGES: stages[0],
   current_player: 0,
   quant_players: 2,
-  players: [
-    ["Ernando", returnNumberCardRandom()],
-    ["Eric", returnNumberCardRandom()],
-  ],
+  players: [],
+  winner: null,
   names: ["Ernando", "Eric", "Geremias", "João Pedro", "Lucas Lima"],
   play_with_bot: false,
 };
+
+const resetInitialState = initialState;
 
 const trintaeUmReducer = (state, action) => {
   switch (action.type) {
     case "CONFIG_GAME":
       return {
         ...state,
-        current: 1,
+        STAGES: stages[1],
       };
 
     case "LOADING":
       return {
         ...state,
-        current: 2,
+        STAGES: stages[2],
       };
 
     case "PLAY":
+      const playerDefaultInitial = [
+        ["Ernando", returnNumberCardRandom(), false],
+        ["Eric", returnNumberCardRandom(), false],
+      ];
+
       return {
         ...state,
-        current: 3,
+        STAGES: stages[3],
+        players: !state.players.length ? playerDefaultInitial : state.players,
       };
+
+    case "RESET":
+      return initialState;
 
     case "SET_QUANT_PLAYERS":
       const numberOfPlayers = action.quant_players;
       const newPlayers = [];
 
       Array.from({ length: numberOfPlayers }, (x, index) => {
-        newPlayers.push([state.names[index], returnNumberCardRandom()]);
+        newPlayers.push([state.names[index], returnNumberCardRandom(), false]);
       });
 
       return {
@@ -81,8 +90,13 @@ const trintaeUmReducer = (state, action) => {
       const newPlayersPb = [];
 
       Array.from({ length: 2 }, (x, index) => {
-        newPlayersPb.push([state.names[index], returnNumberCardRandom()]);
+        newPlayersPb.push([
+          state.names[index],
+          returnNumberCardRandom(),
+          false,
+        ]);
       });
+
       return {
         ...state,
         quant_players: newValuePwb ? 0 : 2,
@@ -91,24 +105,45 @@ const trintaeUmReducer = (state, action) => {
       };
 
     case "NEXT_PLAYER":
+      const filterPlayers = state.players.filter((player) => !player[2]);
       const isLastIndex = state.current_player === state.players.length - 1;
+      let indexPlayer = isLastIndex ? 0 : state.current_player + 1;
+
+      const sameArray =
+        JSON.stringify(state.players) == JSON.stringify(filterPlayers);
+
+      if (!sameArray && indexPlayer) indexPlayer = indexPlayer - 1;
+
+      let winnerName = null;
+      if (filterPlayers.length === 1) winnerName = filterPlayers[0][0];
 
       return {
         ...state,
-        current_player: isLastIndex ? 0 : state.current_player + 1,
+        current_player: indexPlayer,
+        players: filterPlayers,
+        winner: winnerName,
       };
 
     case "GET_OTHER_CARD":
       const cards = state.players[state.current_player][1];
-      const newCards = returnNumberCardRandom(true);
-      cards.push(newCards);
-      
-      const newCardsPlayer = state.players;
-      newCardsPlayer[state.current_player][1] = cards;
+      cards.push(returnNumberCardRandom(true));
+
+      const configPlayer = state.players[state.current_player];
+      const totalPoints = cards.reduce((acc, value) => {
+        return (acc += value[1]);
+      }, 0);
+
+      configPlayer[3] = totalPoints;
+      configPlayer[1] = cards;
+
+      if (totalPoints > 31) configPlayer[2] = true;
+      const newPlayerConfig = state.players;
+      newPlayerConfig[state.current_player] = configPlayer;
 
       return {
         ...state,
-        players: newCardsPlayer,
+        players: newPlayerConfig,
+        winner: totalPoints === 31 ? configPlayer[0] : state.win,
       };
 
     default:

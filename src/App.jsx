@@ -10,13 +10,12 @@ import { useEffect } from "react";
 
 function App() {
   const [state, dispatch] = useContextTrintaeUm();
-  const current = state.current;
   return (
     <>
-      {state.STAGES[current] == "Home" && <Home />}
-      {state.STAGES[current] == "Config_game" && <ConfigGame />}
-      {state.STAGES[current] == "Loading" && <Loading />}
-      {state.STAGES[current] == "Playing" && <Playing />}
+      {state.STAGES == "Home" && <Home />}
+      {state.STAGES == "Config_game" && <ConfigGame />}
+      {state.STAGES == "Loading" && <Loading />}
+      {state.STAGES == "Playing" && <Playing />}
     </>
   );
 }
